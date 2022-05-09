@@ -1,0 +1,167 @@
+/* ########## BODY ########## */
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 400;
+  color: #0E2120;
+  -webkit-font-smoothing: antialiased;
+  transition: .3s;
+}
+
+/* ########## HEADERS ########## */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-bottom: 20px;
+  color: #0E2120;
+  font-weight: 600;
+  font-family: 'Oswald', sans-serif;
+}
+
+h1, .h1 {
+  font-size: 56px;
+  line-height: 61px;
+}
+
+h2, .h2 {
+  font-size: 38px;
+  line-height: 43px;
+}
+
+h3, .h3 {
+  font-size: 32px;
+  line-height: 37px;
+}
+
+h4, .h4 {
+  font-size: 28px;
+  line-height: 33px;
+}
+
+h5, .h5 {
+  font-size: 24px;
+  line-height: 29px;
+}
+
+h6, .h6 {
+  font-size: 20px;
+  line-height: 25px;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  text-decoration: none;
+}
+
+strong, b {
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+  transition: .3s;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: top;
+  max-height: 100%;
+}
+
+hr, .hr {
+  border: none;
+  border-top: 3px solid #102B3F;
+  clear: both;
+}
+
+blockquote {
+  border-left: 5px solid #0E2120;
+  padding: 0 0 0 40px;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* ########## TABLE ########## */
+table {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.table-specification tbody tr:nth-of-type(even) {
+    background-color: #ECE5F0;
+}
+
+table tr th {
+  font-weight: 600;
+  background-color: #E3D8E9;
+}
+
+table tr th,
+table tr td {
+  text-align: left;
+}
+
+table td {
+    width: 50%;
+}
+
+table td, table th {
+  vertical-align: middle;
+  padding: 10px;
+  line-height: normal;
+  white-space: wrap;
+}
+
+@media all and (max-width: 991px) {
+  body {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  h1, .h1 {
+    font-size: 38px;
+    line-height: 43px;
+  }
+
+  h2, .h2 {
+    font-size: 26px;
+    line-height: 31px;
+  }
+
+  h3, .h3 {
+    font-size: 22px;
+    line-height: 27px;
+  }
+
+  h4, .h4 {
+    font-size: 18px;
+    line-height: 23px;
+  }
+
+  h5, .h5, h6, .h6 {
+    font-size: 16px;
+    line-height: 21px;
+  }
+
+  blockquote {
+    border-left-width: 3px;
+    padding-left: 20px;
+  }
+
+  table td, table th {
+    vertical-align: middle;
+    padding: 10px;
+    line-height: normal;
+  }
+}
+
+@media all and (max-width: 767px) {
+
+}
+
+@media all and (max-width: 479px) {
+}

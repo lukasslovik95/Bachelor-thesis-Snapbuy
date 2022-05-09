@@ -1,0 +1,127 @@
+/* ######################### */
+/* ########## BTN ########## */
+/* ######################### */
+
+.btn {
+	background-color: #7C64BE;
+	border: none;
+    border-radius: 7px;
+	color: #EFE9F2;
+	font-size: 16px;
+	line-height: normal;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 45px;
+	min-width: 130px;
+	padding: 0 10px;
+	text-decoration: none;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	position: relative;
+	cursor: pointer;
+	outline: none;
+	transition: ease-in-out .5s;
+}
+
+.btn:not(.not-hover):hover,
+.btn.active,
+.btn:focus,
+a:hover .btn {
+    animation: pulse-on-hover .3s;
+    background-color: #46487F;
+}
+
+/* ####################################### */
+/* ########## BTN.BTN-SECONDARY ########## */
+/* ####################################### */
+
+.btn.btn-secondary {
+    background-color: #EFE9F2;
+    border: 2px solid #46487F;
+    color: #46487F;
+}
+
+.btn-secondary:not(.not-hover):hover,
+.btn-secondary.active,
+.btn-secondary:focus,
+a:hover .btn-secondary {
+    background-color: #EFE9F2;
+    border-color: #46487F;
+    color: #46487F;
+}
+
+/* ################################### */
+/* ########## BTN.BTN-ROUND ########## */
+/* ################################### */
+
+.btn-round {
+    height: 45px;
+    min-width: 45px;
+    font-size: 12px;
+    border-radius: 50%;
+}
+
+/* ################################# */
+/* ########## BTN.BTN-BIG ########## */
+/* ################################# */
+
+.btn-big {
+    height: 80px;
+    font-size: 22px;
+}
+
+/* ################################### */
+/* ########## BTN.BTN-SMALL ########## */
+/* ################################### */
+
+.btn-small {
+    height: 36px;
+    font-size: 14px;
+    padding: 0 15px;
+}
+
+/* ##### BTN DISABLED ##### */
+.btn.btn-disabled {
+    opacity: 0.8;
+    cursor: default;
+}
+
+/* ##### BTN DELETE ##### */
+.btn.btn-delete {
+    background-color: #EFE9F2;
+    border: 2px solid #EA3449;
+    color: #EA3449;
+}
+
+.btn-delete:not(.not-hover):hover,
+.btn-delete.active,
+.btn-delete:focus,
+a:hover .btn-delete {
+    background-color: #DE172E;
+    border-color: #DE172E;
+    color: #EFE9F2;
+}
+
+/* ##################################### */
+/* ########## HOVER ANIMATION ########## */
+/* ##################################### */
+
+@keyframes pulse-on-hover {
+	0% {
+		transform: scale(1);
+	}
+
+	33% {
+		transform: scale(0.95);
+	}
+
+    66% {
+        transform: scale(1.1);
+    }
+
+	100% {
+		transform: scale(1);
+	}
+}

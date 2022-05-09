@@ -1,0 +1,286 @@
+.form-field {
+	margin-bottom: 20px;
+}
+
+.form-field input::placeholder {
+	color: #cacaca;
+}
+
+/* ########################### */
+/* ########## LABEL ########## */
+/* ########################### */
+
+.form-field label:not(.error) {
+	display: inline-block;
+	line-height: normal;
+	font-size: 16px;
+	font-weight: 400;
+    color: #0E2120;
+	margin-bottom: 10px;
+}
+
+/* ##### INPUT ##### */
+
+input,
+textarea {
+	outline: none;
+	padding: 10px;
+	display: block;
+    border-radius: 5px;
+}
+
+.form-field input:not(.btn),
+.form-field textarea,
+.form-field select {
+	height: 40px;
+	line-height: 45px;
+	background-color: transparent;
+	border: 1px solid #666;
+    border-radius: 5px;
+	display: block;
+	padding: 10px;
+	width: 100%;
+	font-size: 16px;
+	color: #0E2120;
+	transition: all 0.3s ease-in-out;
+}
+
+/* CAUTION: IE hackery ahead */
+select::-ms-expand {
+  display: none; /* remove default arrow on ie10 and ie11 */
+}
+
+.form-field textarea {
+	min-height: 150px;
+	line-height: normal;
+    max-width: 100%;
+}
+
+.form-field input:not([disabled]):focus,
+.form-field textarea:not([disabled]):focus,
+.form-field select:focus {
+	box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 15%);
+    border: 1px solid #102B3F;
+	outline:0;
+}
+
+.form-field input.required:not(.no-ico),
+.form-field textarea.required:not(.no-ico),
+.form-field select.required {
+	background-image:url(../img/req-ico.png);
+	background-repeat: no-repeat;
+	background-position: calc(100% - 4px) 4px;
+}
+
+/* ##### FILE ##### */
+.form-field input[type="file"] {
+    line-height: normal;
+    border: none;
+    padding-left: 0;
+}
+
+.form-field input[type="file"].required:not(.no-ico) {
+    background-position: 105px 4px;
+}
+
+/* ##### CHECKBOX ##### */
+.form-field.checkbox input[type=checkbox],
+.form-field.checkbox input[type=radio] {
+	opacity: 0;
+	display: none;
+	visibility: hidden;
+	position: absolute;
+	left: -10000px;
+}
+
+.form-field.checkbox {
+	position: relative;
+}
+
+.form-field.checkbox label:not(.error) {
+	position: relative;
+	display: block;
+	cursor: pointer;
+	margin: 5px 0 5px 20px;
+	padding-left: 10px;
+	font-size: 16px;
+	line-height: 20px;
+}
+.form-field.checkbox label:not(.error):before {
+	content: '';
+	position: absolute;
+	left: -20px;
+	top: 2px;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #666;
+	border-radius: 2px;
+}
+
+.form-field.checkbox input[type="checkbox"]:checked + label:before,
+.form-field.checkbox input[type="radio"]:checked + label:before {
+	background: #7C64BE;
+	border-color: none;
+}
+
+/* checked mark aspect */
+.form-field.checkbox input[type="checkbox"] + label:after,
+.form-field.checkbox input[type="radio"] + label:after {
+	content: '\f00c';
+	position: absolute;
+	top: 8px;
+	left: -19px;
+	font-family:"Font Awesome 5 Pro";
+	color: #EFE9F2;
+	width: 18px;
+	height: 9px;
+	font-size: 0;
+	line-height: 9px;
+	text-align: center;
+	transition: all 0.2s ease-in-out;
+}
+
+.form-field.checkbox input[type="checkbox"]:checked + label:after,
+.form-field.checkbox input[type="radio"]:checked + label:after {
+	font-size: 14px;
+}
+
+.form-field.checkbox input[type="checkbox"][disabled] + label {
+	opacity: 0.8;
+}
+
+/* accessibility */
+.form-field [type="checkbox"]:focus + label:before {
+	border-color: #0E2120 !important;
+}
+
+/* ##### RADIO ##### */
+.form-field.radio input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    left: 5px;
+    top:3px;
+}
+
+.form-field.radio {
+	padding: 0 0 0 25px;
+	position: relative;
+}
+
+.form-field.radio label:not(.error) {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	line-height: 22px;
+}
+
+.form-field.radio.small label:not(.error) {
+    font-size: 14px;
+}
+
+.form-field.radio label:not(.error):before {
+	content: '';
+	position: absolute;
+	left: -25px;
+	top: 1px;
+	width: 17px;
+	height: 17px;
+	border: 1px solid #0E2120;
+	border-radius: 50%;
+}
+
+.form-field.radio.small label:not(.error):before {
+    width: 14px;
+    height: 14px;
+}
+
+.form-field.radio input[type="radio"]:checked + label:before {
+    border-color: #0E2120;
+}
+
+/* checked mark aspect changes */
+.form-field.radio input[type="radio"]:checked + label:after {
+	content: '';
+	position: absolute;
+	top: 5px;
+	left: -21px;
+	background: #1F2933;
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+}
+
+.form-field.radio input[type="radio"]:not(:checked) + label:after {
+	opacity: 0;
+	transform: scale(0);
+}
+.form-field.radio input[type="radio"]:checked + label:after {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.form-field.radio input[type="radio"].error + label {
+	box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+/* accessibility */
+.form-field [type="radio"]:focus + label:before {
+	border-color: #1F2933 !important;
+}
+
+/* ##### VALIDATE ERROR ##### */
+input.error:not([disabled]),
+textarea.error:not([disabled]),
+select.error {
+	border-color:red;
+}
+
+label.error {
+	display:none;
+	color:#c51331;
+	font-size:12px;
+	line-height:16px;
+	font-weight:normal;
+	position: relative;
+	bottom: -2px;
+}
+
+
+label[generated="true"] {
+	display:inline-block;
+}
+
+.hidden-submit {
+	left: -10000px;
+	opacity: 0;
+	position: absolute;
+	top: -10000px;
+}
+
+input[readonly="readonly"],
+input[readonly],
+input[disabled="disabled"],
+input[disabled] {
+	background-color:#F6F6F6 !important;
+	color:#989593 !important;
+	border-color: #bcbec0 !important;
+}
+
+@media all and (max-width: 991px) {
+	/* ##### CHECKBOX ##### */
+	.form-field.checkbox label:not(.error) {font-size: 14px; line-height: 25px;}
+	.form-field.radio label:not(.error) {font-size: 14px; line-height: 22px;}
+}
+
+@media all and (max-width: 575px) {
+
+    .form-field label:not(.error) {
+    	font-size: 14px;
+    }
+
+}
