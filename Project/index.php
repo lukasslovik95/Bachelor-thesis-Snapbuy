@@ -26,7 +26,7 @@ if( isset($_SESSION['user_id']) ){
 
   <main>
 
-		 <!-- REGISTER MODAL -->
+      <!-- REGISTER MODAL -->
     <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalTitleTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">

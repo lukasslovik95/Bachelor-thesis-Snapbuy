@@ -45,7 +45,7 @@
 
   <div class="full bg-navy-blue">
     <div class="container d-flex justify-content-between align-items-center" style="height: 50px;">
-      <p class="fs-12 color-light">Copyright © 2021 Snap-Buy</p>
+      <p class="fs-12 color-light">Copyright © <?php echo date("Y"); ?> Snap-Buy</p>
       <div class="our-socials">
         <p class="fs-12 color-light">Twórcy:</p>
         <a target="_blank" href="https://github.com/lukasslovik95" title="Łukasz Słowik - Github" class="ml-10">
