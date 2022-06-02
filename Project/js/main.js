@@ -266,7 +266,6 @@ $(document).on('click', '.js-click-effect-parent', function(e){
   }
 });
 
-
 /* VALIDATE MESSAGES */
 $.extend(
   $.validator.messages, {

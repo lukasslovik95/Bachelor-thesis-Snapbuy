@@ -433,6 +433,15 @@ main.main-chat .users .search input {
     font-size: 16px;
     border-radius: 7px 0 0 7px;
     outline: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+main.main-chat .users .search input.active {
+    opacity: 1;
+    pointer-events: auto;
+
 }
 
 main.main-chat .users .search button {
@@ -440,11 +449,21 @@ main.main-chat .users .search button {
     height: 42px;
     border: none;
     outline: none;
-    color: #EFE9F2;
-    background: #7C64BE;
+    color: #0E2120;
+    background: #EFE9F2;
     border-radius: 0 7px 7px 0;
     cursor: pointer;
     font-size: 17px;
+    transition: all 0.2s ease;
+}
+
+main.main-chat .users .search button.active {
+    color: #EFE9F2;
+    background: #7C64BE;
+}
+
+main.main-chat .users .search button.active i::before {
+    content: "\f00d";
 }
 
 main.main-chat .users-list {
@@ -461,6 +480,7 @@ main.main-chat .users-list a {
     margin-bottom: 15px;
     padding-bottom: 10px;
     border-bottom-color: rgba(204, 175, 233, 0.3);
+    position: relative;
 }
 
 main.main-chat .users-list a:last-child {
@@ -480,6 +500,16 @@ main.main-chat .users-list a .content p {
 main.main-chat .users-list a .status-dot {
     font-size: 12px;
     color: #468669;
+    position: absolute;
+    background: #EFE9F2;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    top: 25px;
+    left: 25px;
 }
 
 main.main-chat .users-list a .status-dot.offline {

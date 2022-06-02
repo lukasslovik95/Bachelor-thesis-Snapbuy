@@ -13,8 +13,8 @@ $conn=new PDO('mysql:host=localhost;dbname=snapbuy;port=3306','root','');
   }
 
 if(!empty($_POST['email']) && !empty($_POST['password'])):
-	
-	$records = $conn->prepare('SELECT id,email,password FROM users WHERE email = :email');
+
+	$records = $conn->prepare('SELECT id,email,name,unique_id,password FROM users WHERE email = :email');
 	$records->bindParam(':email', $_POST['email']);
 	$records->execute();
 	$results = $records->fetch(PDO::FETCH_ASSOC);

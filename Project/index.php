@@ -10,7 +10,7 @@ require 'database.php';
 
 if( isset($_SESSION['user_id']) ){
 
-	$records = $conn->prepare('SELECT id,email,password FROM users WHERE id = :id');
+	$records = $conn->prepare('SELECT id,email,unique_id,password FROM users WHERE id = :id');
 	$records->bindParam(':id', $_SESSION['user_id']);
 	$records->execute();
 	$results = $records->fetch(PDO::FETCH_ASSOC);
@@ -21,6 +21,12 @@ if( isset($_SESSION['user_id']) ){
 		$user = $results;
 	}
 }
+
+?>
+
+<?php
+
+$uuid = strtotime('today')*1000+rand(10000,99999);
 
 ?>
 
@@ -44,9 +50,10 @@ if( isset($_SESSION['user_id']) ){
 			<form action="register.php" method="POST">
 
 				<input type="text" placeholder="Wprowadź email" name="email">
+                <input type="text" placeholder="Wprowadź login" name="name">
 				<input type="password" placeholder="Hasło" name="password">
 				<input type="password" placeholder="Potwierdź hasło" name="confirm_password">
-
+                <input type="text" name="unique_id" value=<?php echo htmlspecialchars($uuid); ?> readonly style="position:absolute;opacity:0;left:-100000;"/>
 				<button type="submit" class="btn btn-primary">Zatwierdź</button>
 
 			</form>
@@ -145,7 +152,6 @@ if( isset($_SESSION['user_id']) ){
         </script>
       </div>
     </section>
-
 
     <!-- COUNTING SECTION -->
     <section class="full counting-section">

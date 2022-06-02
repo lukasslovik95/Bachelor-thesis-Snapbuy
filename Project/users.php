@@ -10,7 +10,7 @@ require 'database.php';
 
 if( isset($_SESSION['user_id']) ){
 
-	$records = $conn->prepare('SELECT id,email,password FROM users WHERE id = :id');
+	$records = $conn->prepare('SELECT id,email,name,unique_id,password,status FROM users WHERE id = :id');
 	$records->bindParam(':id', $_SESSION['user_id']);
 	$records->execute();
 	$results = $records->fetch(PDO::FETCH_ASSOC);
@@ -39,7 +39,7 @@ if( isset($_SESSION['user_id']) ){
                 <div class="modal-body">
                 </div>
                 <div class="modal-footer">
-                    <form action="register.php" method="POST">
+                    <form action="register.php" method="POST">a
                         <input type="text" placeholder="Wprowadź email" name="email">
                         <input type="password" placeholder="Hasło" name="password">
                         <input type="password" placeholder="Potwierdź hasło" name="confirm_password">
@@ -77,13 +77,14 @@ if( isset($_SESSION['user_id']) ){
 
     <?php if( !empty($user) ): ?>
         <div class="wrapper">
+
             <section class="users">
                 <header>
                     <div class="content">
-                        <img src="img/profile-picture-placeholder.jpg" alt="" />
+                        <img <?php echo "src=\"https://www.gravatar.com/avatar/" . md5($user['email']) . "?d=mp\""; ?> />
                         <div class="details">
-                            <span>Łukasz Słowik</span>
-                            <p>Aktywny</p>
+                            <span><?php echo $user['name']; ?></span>
+                            <p><?php echo $user['status']; ?></p>
                         </div>
                     </div>
                     <a href="#" class="logout">Wyloguj się</a>
@@ -94,96 +95,7 @@ if( isset($_SESSION['user_id']) ){
                     <button><i class="fas fa-search"></i></button>
                 </div>
                 <div class="users-list">
-                    <a href="#">
-                        <div class="content">
-                            <img src="img/profile-picture-placeholder.jpg" alt="">
-                            <div class="details">
-                                <span>Piotr Rychert</span>
-                                <p>przykładowa wiadomość</p>
-                            </div>
-                        </div>
-                        <div class="status-dot"><i class="fas fa-circle"></i></div>
-                    </a>
-                    <a href="#">
-                        <div class="content">
-                            <img src="img/profile-picture-placeholder.jpg" alt="">
-                            <div class="details">
-                                <span>Paweł Rutkowski</span>
-                                <p>cześć to ja</p>
-                            </div>
-                        </div>
-                        <div class="status-dot"><i class="fas fa-circle"></i></div>
-                    </a>
-                    <a href="#">
-                        <div class="content">
-                            <img src="img/profile-picture-placeholder.jpg" alt="">
-                            <div class="details">
-                                <span>Rajmund Panas</span>
-                                <p>hehe</p>
-                            </div>
-                        </div>
-                        <div class="status-dot"><i class="fas fa-circle"></i></div>
-                    </a>
-                    <a href="#">
-                        <div class="content">
-                            <img src="img/profile-picture-placeholder.jpg" alt="">
-                            <div class="details">
-                                <span>Piotr Rychert</span>
-                                <p>przykładowa wiadomość</p>
-                            </div>
-                        </div>
-                        <div class="status-dot"><i class="fas fa-circle"></i></div>
-                    </a>
-                    <a href="#">
-                        <div class="content">
-                            <img src="img/profile-picture-placeholder.jpg" alt="">
-                            <div class="details">
-                                <span>Paweł Rutkowski</span>
-                                <p>cześć to ja</p>
-                            </div>
-                        </div>
-                        <div class="status-dot"><i class="fas fa-circle"></i></div>
-                    </a>
-                    <a href="#">
-                        <div class="content">
-                            <img src="img/profile-picture-placeholder.jpg" alt="">
-                            <div class="details">
-                                <span>Rajmund Panas</span>
-                                <p>hehe</p>
-                            </div>
-                        </div>
-                        <div class="status-dot"><i class="fas fa-circle"></i></div>
-                    </a>
-                    <a href="#">
-                        <div class="content">
-                            <img src="img/profile-picture-placeholder.jpg" alt="">
-                            <div class="details">
-                                <span>Piotr Rychert</span>
-                                <p>przykładowa wiadomość</p>
-                            </div>
-                        </div>
-                        <div class="status-dot"><i class="fas fa-circle"></i></div>
-                    </a>
-                    <a href="#">
-                        <div class="content">
-                            <img src="img/profile-picture-placeholder.jpg" alt="">
-                            <div class="details">
-                                <span>Paweł Rutkowski</span>
-                                <p>cześć to ja</p>
-                            </div>
-                        </div>
-                        <div class="status-dot"><i class="fas fa-circle"></i></div>
-                    </a>
-                    <a href="#">
-                        <div class="content">
-                            <img src="img/profile-picture-placeholder.jpg" alt="">
-                            <div class="details">
-                                <span>Rajmund Panas</span>
-                                <p>hehe</p>
-                            </div>
-                        </div>
-                        <div class="status-dot"><i class="fas fa-circle"></i></div>
-                    </a>
+
                 </div>
             </section>
         </div>
@@ -195,5 +107,7 @@ if( isset($_SESSION['user_id']) ){
     <?php endif; ?>
 
 </main>
+
+<script src="js/users.js"></script>
 
 <?php include ( '_footer.php' ); ?>

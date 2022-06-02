@@ -5,12 +5,11 @@ session_start();
 <?php include ( '_header.php' ); ?>
 
 <?php
-
 require 'database.php';
 
 if( isset($_SESSION['user_id']) ){
 
-	$records = $conn->prepare('SELECT id,email,password FROM users WHERE id = :id');
+	$records = $conn->prepare('SELECT id,email,name,unique_id,password,status FROM users WHERE id = :id');
 	$records->bindParam(':id', $_SESSION['user_id']);
 	$records->execute();
 	$results = $records->fetch(PDO::FETCH_ASSOC);
@@ -21,6 +20,31 @@ if( isset($_SESSION['user_id']) ){
 		$user = $results;
 	}
 }
+
+$conn = mysqli_connect("localhost", "root", "", "snapbuy");
+
+$ownsql = mysqli_query($conn, "SELECT * FROM users WHERE id = {$_SESSION['user_id']}");
+$ownrow = mysqli_fetch_assoc($ownsql);
+
+$user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
+$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$user_id}");
+$row = mysqli_fetch_assoc($sql);
+// $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$user_id}");
+// $row = mysqli_fetch_assoc($sql);
+
+// if( isset($_SESSION['user_id']) ){
+//
+// 	$records = $conn->prepare('SELECT id,email,name,unique_id,password,status FROM users WHERE id = :id');
+// 	$records->bindParam(':id', $_SESSION['user_id']);
+// 	$records->execute();
+// 	$results = $records->fetch(PDO::FETCH_ASSOC);
+//
+// 	$user = NULL;
+//
+// 	if( count($results) > 0){
+// 		$user = $results;
+// 	}
+// }
 
 ?>
 
@@ -75,76 +99,25 @@ if( isset($_SESSION['user_id']) ){
         </div>
     </div>
 
+    <!-- CHAT WINDOW -->
     <?php if( !empty($user) ): ?>
         <div class="wrapper">
             <section class="chat-area">
                 <header>
                     <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-                    <img src="img/profile-picture-placeholder.jpg" alt="" />
+                    <img <?php echo "src=\"https://www.gravatar.com/avatar/" . md5($row['email']) . "?d=mp\""; ?> />
                     <div class="details">
-                        <span>Łukasz Słowik</span>
-                        <p>Aktywny</p>
+                        <span><?php echo $row['name']; ?></span>
+                        <p><?php echo $row['status']; ?></p>
                     </div>
                 </header>
                 <div class="chat-box">
-                    <div class="chat outgoing">
-                        <div class="details">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div class="chat incoming">
-                        <img src="img/profile-picture-placeholder.jpg" alt="">
-                        <div class="details">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <div class="chat outgoing">
-                        <div class="details">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div class="chat incoming">
-                        <img src="img/profile-picture-placeholder.jpg" alt="">
-                        <div class="details">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <div class="chat outgoing">
-                        <div class="details">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div class="chat incoming">
-                        <img src="img/profile-picture-placeholder.jpg" alt="">
-                        <div class="details">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <div class="chat outgoing">
-                        <div class="details">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div class="chat incoming">
-                        <img src="img/profile-picture-placeholder.jpg" alt="">
-                        <div class="details">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <div class="chat outgoing">
-                        <div class="details">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div class="chat incoming">
-                        <img src="img/profile-picture-placeholder.jpg" alt="">
-                        <div class="details">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
+
                 </div>
-                <form action="#" class="typing-area">
-                    <input type="text" placeholder="Napisz wiadomość...">
+                <form action="#" class="typing-area" autocomplete="off">
+                    <input type="text" name="outgoing_id" value="<?php echo $ownrow['unique_id']; ?>" hidden>
+                    <input type="text" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
+                    <input type="text" name="message" class="input-field" placeholder="Napisz wiadomość...">
                     <button><i class="fab fa-telegram-plane"></i></button>
                 </form>
             </section>
@@ -157,5 +130,7 @@ if( isset($_SESSION['user_id']) ){
     <?php endif; ?>
 
 </main>
+
+<script src="js/chat.js"></script>
 
 <?php include ( '_footer.php' ); ?>
