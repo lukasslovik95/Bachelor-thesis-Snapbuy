@@ -62,8 +62,16 @@
 
 <span id="icoGoTop" class="ico-go-top btn" data-scroll-target="#top"></span>
 
-<button class="btn chat-opener">
-    ...
-</button>
+<?php
+if (strpos($_SERVER['REQUEST_URI'],'users') == false) {
+    echo '
+        <a href="users.php" title="Otwórz czat">
+            <button class="btn chat-opener">
+                ...
+            </button>
+        </a>
+    ';
+}
+?>
 
 <?php include('_footer-end.php'); ?>

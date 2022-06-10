@@ -54,6 +54,7 @@ if( isset($_SESSION['user_id']) ){
 		  <?php endif; ?>
           <li><a class="menu-scroll" href="o-nas.php">O nas</a></li>
           <li><a class="menu-scroll" href="kontakt.php">Kontakt</a></li>
+          <li><a class="menu-scroll" href="users.php">Chat</a></li>
 			<?php if( !empty($user) ): ?>
 				<li><a href="auction.php">Dodaj oferte</a></li>
 				<li><a href="logout.php">Wyloguj</a></li>

@@ -87,7 +87,6 @@ if( isset($_SESSION['user_id']) ){
                             <p><?php echo $user['status']; ?></p>
                         </div>
                     </div>
-                    <a href="#" class="logout">Wyloguj się</a>
                 </header>
                 <div class="search">
                     <span class="text">Znajdź użytkownika</span>
