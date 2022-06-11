@@ -26,7 +26,7 @@ if( isset($_SESSION['user_id']) ){
 
   <main>
 
-		 <!-- REGISTER MODAL -->
+      <!-- REGISTER MODAL -->
     <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalTitleTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -41,15 +41,16 @@ if( isset($_SESSION['user_id']) ){
           </div>
           <div class="modal-footer">
 
-			<form action="register.php" method="POST">
+         <form action="register.php" method="POST">
 
-				<input type="text" placeholder="Wprowadź email" name="email">
-				<input type="password" placeholder="Hasło" name="password">
-				<input type="password" placeholder="Potwierdź hasło" name="confirm_password">
+             <input type="text" placeholder="Wprowadź email" name="email">
+                <input type="text" placeholder="Wprowadź login" name="name">
+             <input type="password" placeholder="Hasło" name="password">
+             <input type="password" placeholder="Potwierdź hasło" name="confirm_password">
+                <input type="text" name="unique_id" value=<?php echo htmlspecialchars($uuid); ?> readonly style="position:absolute;opacity:0;left:-100000;"/>
+             <button type="submit" class="btn btn-primary">Zatwierdź</button>
 
-				<button type="submit" class="btn btn-primary">Zatwierdź</button>
-
-			</form>
+         </form>
 
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
@@ -57,7 +58,7 @@ if( isset($_SESSION['user_id']) ){
       </div>
     </div>
 
-	<!-- LOGIN MODAL -->
+ <!-- LOGIN MODAL -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -71,13 +72,13 @@ if( isset($_SESSION['user_id']) ){
           </div>
           <div class="modal-footer">
 
-		  <form action="login.php" method="POST">
+       <form action="login.php" method="POST">
 
-				<input type="text" placeholder="Wprowadź email" name="email">
-				<input type="password" placeholder="Hasło" name="password">
-				<button type="submit" class="btn btn-primary">Zatwierdź</button>
+             <input type="text" placeholder="Wprowadź email" name="email">
+             <input type="password" placeholder="Hasło" name="password">
+             <button type="submit" class="btn btn-primary">Zatwierdź</button>
 
-			</form>
+         </form>
 
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 

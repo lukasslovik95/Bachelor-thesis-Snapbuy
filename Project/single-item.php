@@ -19,72 +19,79 @@
 <main>
 
     <!-- REGISTER MODAL -->
-
-    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalTitleTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="registerModalTitle">Rejestracja</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body"></div>
-                <div class="modal-footer">
-                    <form action="register.php" method="POST">
-                        <input type="text" placeholder="Wprowadź email" name="email">
-                        <input type="password" placeholder="Hasło" name="password">
-                        <input type="password" placeholder="Potwierdź hasło" name="confirm_password">
-                        <button type="submit" class="btn btn-primary">Zatwierdź</button>
-                    </form>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalTitleTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalTitle">Rejestracja</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-    </div>
+        <div class="modal-body">
 
-	<!-- LOGIN MODAL -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="loginModalTitle">Logowanie</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-          </div>
-          <div class="modal-footer">
+        </div>
+        <div class="modal-footer">
 
-		  <form action="login.php" method="POST">
+          <form action="register.php" method="POST">
 
-				<input type="text" placeholder="Wprowadź email" name="email">
-				<input type="password" placeholder="Hasło" name="password">
-				<button type="submit" class="btn btn-primary">Zatwierdź</button>
+              <input type="text" placeholder="Wprowadź email" name="email">
+              <input type="text" placeholder="Wprowadź login" name="name">
+              <input type="password" placeholder="Hasło" name="password">
+              <input type="password" placeholder="Potwierdź hasło" name="confirm_password">
+              <input type="text" name="unique_id" value=<?php echo htmlspecialchars($uuid); ?> readonly style="position:absolute;opacity:0;left:-100000;"/>
+              <button type="submit" class="btn btn-primary">Zatwierdź</button>
 
-            </form>
+          </form>
 
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-          </div>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
-	
-	
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalTitle">Logowanie</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+
+        <form action="login.php" method="POST">
+
+              <input type="text" placeholder="Wprowadź email" name="email">
+              <input type="password" placeholder="Hasło" name="password">
+              <button type="submit" class="btn btn-primary">Zatwierdź</button>
+
+          </form>
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 	<?php
 		$conn = mysqli_connect("localhost", "root", "", "snapbuy");
-		
+
 		if($conn === false){
-			die("ERROR: Could not connect. " 
+			die("ERROR: Could not connect. "
 			. mysqli_connect_error());
 		}
-		
+
 		$ID = $_REQUEST['ID'];
 		$ShowBuyNow = mysqli_query($conn, "SELECT * FROM buynow WHERE ID='$ID'");
 		$row = mysqli_fetch_array($ShowBuyNow);
-	
+
 	?>
 
     <!-- A'LA HERO DIV -->
@@ -221,18 +228,18 @@
                 <div class="d-flex align-items-center justify-content-between flex-column flex-sm-row">
                     <div class="order-1 mb-20 mb-sm-0">
                         <a href="#" class="btn btn-secondary mr-20">POWRÓT</a>
-						<?php 
+						<?php
 							if (!empty($user)):
 							echo
-							'<form method="POST" action="BuyProduct.php">														
+							'<form method="POST" action="BuyProduct.php">
 								<input type="hidden" name="ID" value='.$row['ID'].'>
 								<input type="hidden" name="User" value='.$user['email'].'>
-								<input type="submit" name="add" value="KUP TERAZ" class="btn"/>                     
+								<input type="submit" name="add" value="KUP TERAZ" class="btn"/>
 							</form>';
 							else:
-							
+
 							echo '<h3>Zaloguj się aby zakupić przedmiot</h3>';
-							
+
 							endif;
 						?>
                     </div>
@@ -253,11 +260,11 @@
 					$CPU = $row['Cpu'];
 					$PRODUCER = $row['Producer'];
 					$MATRIX = $row['MatrixType'];
-					
+
 					$ShowCpu = mysqli_query($conn, "SELECT * FROM cpu WHERE Name = '$CPU'");
 					$ShowProducer = mysqli_query($conn, "SELECT * FROM producer WHERE Name = '$PRODUCER'");
 					$ShowMatrix = mysqli_query($conn, "SELECT * FROM matrix WHERE Name = '$MATRIX'");
-					
+
 					$row2 = mysqli_fetch_array($ShowCpu);
 					$row3 = mysqli_fetch_array($ShowProducer);
 					$row4 = mysqli_fetch_array($ShowMatrix);
@@ -265,10 +272,10 @@
                 <h2 class="t-center mb-20 mb-md-40">OPIS</h2>
                 <h3><?php echo $row3['Name'];?></h3>
                 <p class="t-justify"><?php echo $row3['Description'];?></p>
-                <?php echo'<img src="data:image/jpeg;base64,'.base64_encode( $row3['Img'] ).'" class="br-5 mt-20 mb-30 mb-md-40"/>'; ?> 
+                <?php echo'<img src="data:image/jpeg;base64,'.base64_encode( $row3['Img'] ).'" class="br-5 mt-20 mb-30 mb-md-40"/>'; ?>
                 <h3><?php echo $row2['Name'];?></h3>
                 <p class="t-justify"><?php echo $row2['Description'];?></p>
-				<?php echo'<img src="data:image/jpeg;base64,'.base64_encode( $row2['Img'] ).'" class="br-5 mt-20 mb-30 mb-md-40"/>'; ?>               
+				<?php echo'<img src="data:image/jpeg;base64,'.base64_encode( $row2['Img'] ).'" class="br-5 mt-20 mb-30 mb-md-40"/>'; ?>
                 <h3><?php echo $row4['Name'];?></h3>
                 <p class="t-justify"><?php echo $row4['Description'];?></p>
                 <?php echo'<img src="data:image/jpeg;base64,'.base64_encode( $row4['Img'] ).'" class="br-5 mt-20 mb-30 mb-md-40"/>'; ?>
